@@ -1,38 +1,3 @@
-// // function Student() {
-// //   }
-  
-// //   Student.prototype.sayName = function() {
-// //     return `${this.name} is so cool`
-// //   }
-// //   Student.prototype.goToProm = function() {
-// //     return "Eh.. go to prom?"
-// //   }
-
-// // function yearOne(name){
-// //     this.grade = 'C'
-// //     this.name = name
-// // }
-
-// // yearOne.prototype = Object.create(Student.prototype)
-// // const April =  new yearOne('April')
-// // console.log(April.sayName())
-// // console.log(April.grade)
-
-// class Programmer {
-//     constructor(name){
-//         this.name=name
-//     }
-// }
-
-// class WebDeveloper extends Programmer {
-//     constructor(name, technology){
-//         super(name)
-//         this.technology = technology
-//     }
-// }
-// const Elismo = new Programmer('Elijah')
-// const Hottie = new WebDeveloper("Chimex", 'React', 'Heello')
-
 const dq = document.querySelector.bind(document)
 const dqa = document.querySelectorAll.bind(document)
 const c = console.log.bind(document)
@@ -47,10 +12,6 @@ addBook.addEventListener('click', openModal)
 getDeleteButtons()
 getReadToggle()
 addBookSection.addEventListener('click', processModal)
-
-
-
-
 
 function Book(title, author, pages, read){
     this.title = title
@@ -107,7 +68,6 @@ function getDeleteButtons(){
 
 function getReadToggle(){
     let toggleRead = dqa('input[type=checkbox]') 
-    c(toggleRead)
     toggleRead.forEach(box => {
         box.addEventListener('click', toggleLibraryRead)
     })  
@@ -116,10 +76,8 @@ function getReadToggle(){
 function toggleLibraryRead(){
     let libraryIndex = Number(this.parentNode.parentNode.parentNode.dataset.number)
     let libraryItem = library[libraryIndex]
-    c(libraryItem)
     if(libraryItem.read) libraryItem.read = false
     else libraryItem.read = true
-    c(libraryItem)
 }
 
 function removeFromLibrary(){
