@@ -33,8 +33,17 @@
 // const Elismo = new Programmer('Elijah')
 // const Hottie = new WebDeveloper("Chimex", 'React', 'Heello')
 
+const dq = document.querySelector.bind(document)
+const dqa = document.querySelectorAll.bind(document)
+const c = console.log.bind(document)
 
 let library = []
+const addBook = dq('.add-book')
+const bookWrapper = dq('.book-wrapper')
+let removeBook = dq('.rem')
+c(bookWrapper)
+addBook.addEventListener('click', addBookToLibrary)
+getDeleteButtons()
 
 function Book(title, author, pages, read){
     this.title = title
@@ -52,4 +61,47 @@ function addBookToLibrary(){
     if(!read) read = false
     let myNewBook = new Book(title, author, pages, read)
     library.push(myNewBook)
+    renderToPage(library)
+    getDeleteButtons()
 }
+
+function renderToPage(library){
+    bookWrapper.innerHTML = ''
+    let book;
+    for (let i = 0; i < library.length; i++){
+        book = library[i]   
+    if (book.read) checked = 'checked'
+    bookWrapper.innerHTML += `
+    <div class="book" data-number=${i}>
+        <h1 class="title">${book.title}</h1>
+        <p>By</p>
+        <p class="author">${book.author}</p>
+        <p class="pages">${book.pages}</p>
+        <div>
+   
+            <label><input type="checkbox" ${checked}>Read</label>
+        </div>
+        <button class="delete">Remove Book</button>
+    `
+}
+}
+
+function getDeleteButtons(){
+    let delButtons = dqa('.delete')
+    delButtons.forEach(delButton => {
+        delButton.addEventListener('click', removeFromLibrary)
+    })
+}
+
+function removeFromLibrary(){
+    let book
+    let confirmDelete = confirm('Are you sure you want to remove book?')
+    if(confirmDelete) {
+        book = this.parentNode
+        let bookIndex = book.dataset.number
+        library.splice(bookIndex, 1)
+        renderToPage(library)
+        getDeleteButtons()
+    }
+}
+
