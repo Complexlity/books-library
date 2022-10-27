@@ -116,7 +116,7 @@ body{
     justify-content: flex-end;
     gap:20px;
 }
-  .buttons > * {
+  .buttons > *{
     cursor: pointer;
     background-color: hsl(147, 89%, 37%);
     border: 2px solid #0ab457;
@@ -126,6 +126,17 @@ body{
     padding: 10px;
     font-size: 16px;
     margin-top: 20px;
+  }
+
+  .delete {
+    padding:10px;
+    color:white;
+    background-color:hsl(0, 100%, 30%);
+    border-color: hsl(0, 100%, 30%);
+  }
+
+  .delete:hover {
+    background-color:hsl(0, 100%, 40%);
   }
 
   .buttons > *:hover {

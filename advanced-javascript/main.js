@@ -45,6 +45,7 @@ const form = dq('.form')
 let checked; 
 addBook.addEventListener('click', openModal)
 getDeleteButtons()
+getReadToggle()
 addBookSection.addEventListener('click', processModal)
 
 
@@ -104,6 +105,23 @@ function getDeleteButtons(){
     })
 }
 
+function getReadToggle(){
+    let toggleRead = dqa('input[type=checkbox]') 
+    c(toggleRead)
+    toggleRead.forEach(box => {
+        box.addEventListener('click', toggleLibraryRead)
+    })  
+}
+
+function toggleLibraryRead(){
+    let libraryIndex = Number(this.parentNode.parentNode.parentNode.dataset.number)
+    let libraryItem = library[libraryIndex]
+    c(libraryItem)
+    if(libraryItem.read) libraryItem.read = false
+    else libraryItem.read = true
+    c(libraryItem)
+}
+
 function removeFromLibrary(){
     let book
     let confirmDelete = confirm('Are you sure you want to remove book?')
@@ -113,18 +131,9 @@ function removeFromLibrary(){
         library.splice(bookIndex, 1)
         renderToPage(library)
         getDeleteButtons()
+        getReadToggle()
     }
 }
-
-
-/* -------------------
- USING PROMPT TO GET VALUES
- ---------------------- */
-// function addBookToLibrary(){
-//     library.push(myNewBook)
-//     renderToPage(library)
-//     getDeleteButtons()
-// }
 
 /* -----------------------
 FORM VALIDATION SECTION
@@ -133,7 +142,6 @@ FORM VALIDATION SECTION
 const submit = dq('.add')
 const inputsDiv = dqa('.form-control')
 const inputs = dqa('.form-control input')
-c(inputs)
 let title = inputsDiv[0]
 let titleInput = title.querySelector('input')
 let author = inputsDiv[1]
@@ -144,8 +152,6 @@ let readSwitch = dq('.select')
 let readOrNot = readSwitch.querySelector('select')
 let successCount
 
-c(titleInput, authorInput, pagesInput, readOrNot)
-c(submit)
 submit.addEventListener('click', validateAll)
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
@@ -157,7 +163,6 @@ function validateAll(){
     let authorValue = authorInput.value
     let pagesValue = pagesInput.value
     let read = readOrNot.value
-    c(read)
     let readBoolean = (read === '1' || read === '0')  ? true : false
 
     let error1 = 'Field cannot be left blank'
@@ -173,12 +178,9 @@ function validateAll(){
                 clearFormSection()
                 renderToPage(library)
                 getDeleteButtons()
+                getReadToggle()
     }
 }
-
-
-
-
 
 
 // Function to log error messages
@@ -196,4 +198,17 @@ function successError(nodeElement, value, ErrorMessage) {
 
 
 function clearFormSection(){
+    let inputDivs = addBookSection.querySelectorAll('.form-control')
+    let allInputs = addBookSection.querySelectorAll('.selection')
+    let allErrors = addBookSection.querySelectorAll('small')
+    allInputs.forEach(input => {
+        input.value = ''
+    })
+    allErrors.forEach(error => {
+        error.textContent = ''
+        error.style.display = 'none'
+    
+    })
+    inputDivs.forEach(div => div.classList.remove('success'))
 }
+
