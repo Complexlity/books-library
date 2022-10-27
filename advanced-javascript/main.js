@@ -164,9 +164,7 @@ function clearFormSection(){
     })
     allErrors.forEach(error => {
         error.textContent = ''
-        error.style.display = 'none'
-    
     })
-    inputDivs.forEach(div => div.classList.remove('success'))
+    inputDivs.forEach(div => div.classList.remove('success', 'error'))
 }
 
