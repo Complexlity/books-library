@@ -111,7 +111,7 @@ body{
     border-color:orange;
 }
   
-  .form-control.success input, .form-control.success select1 {
+  .form-control.success input, .form-control.success select {
     border: 2px solid var(--success-color);
   }
   
