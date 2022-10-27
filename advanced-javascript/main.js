@@ -40,9 +40,10 @@ const c = console.log.bind(document)
 let library = []
 const addBook = dq('.add-book')
 const bookWrapper = dq('.book-wrapper')
+const addBookSection = dq('.add-book-section')
 let removeBook = dq('.rem')
 c(bookWrapper)
-addBook.addEventListener('click', addBookToLibrary)
+addBook.addEventListener('click', openModal)
 getDeleteButtons()
 
 function Book(title, author, pages, read){
@@ -52,18 +53,25 @@ function Book(title, author, pages, read){
     this.read = read
 }
 
-
-function addBookToLibrary(){
-    let title = prompt('What is the title of the book')
-    let author = prompt('Who is the author')
-    let pages = prompt('How many pages')
-    let read = confirm('Have you read it?')
-    if(!read) read = false
-    let myNewBook = new Book(title, author, pages, read)
-    library.push(myNewBook)
-    renderToPage(library)
-    getDeleteButtons()
+function openModal() {
+    addBookSection.style.display = 'flex'
 }
+
+/* -------------------
+ USING PROMPT TO GET VALUES
+ ---------------------- */
+
+// function addBookToLibrary(){
+//     let title = prompt('What is the title of the book')
+//     let author = prompt('Who is the author')
+//     let pages = prompt('How many pages')
+//     let read = confirm('Have you read it?')
+//     if(!read) read = false
+//     let myNewBook = new Book(title, author, pages, read)
+//     library.push(myNewBook)
+//     renderToPage(library)
+//     getDeleteButtons()
+// }
 
 function renderToPage(library){
     bookWrapper.innerHTML = ''
