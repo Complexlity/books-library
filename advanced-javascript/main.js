@@ -41,10 +41,14 @@ let library = []
 const addBook = dq('.add-book')
 const bookWrapper = dq('.book-wrapper')
 const addBookSection = dq('.add-book-section')
-let removeBook = dq('.rem')
-c(bookWrapper)
+const form = dq('.form')
 addBook.addEventListener('click', openModal)
 getDeleteButtons()
+addBookSection.addEventListener('click', processModal)
+
+form.addEventListener('submit', (e)=>{
+    e.preventDefault()
+})
 
 function Book(title, author, pages, read){
     this.title = title
@@ -57,10 +61,18 @@ function openModal() {
     addBookSection.style.display = 'flex'
 }
 
+function processModal(e){
+    if (
+        e.target.className == 'add-book-section' ||
+        e.target.className == 'cancel'
+    ){
+        addBookSection.style.display = 'none'
+    }
+}
+
 /* -------------------
  USING PROMPT TO GET VALUES
  ---------------------- */
-
 // function addBookToLibrary(){
 //     let title = prompt('What is the title of the book')
 //     let author = prompt('Who is the author')
