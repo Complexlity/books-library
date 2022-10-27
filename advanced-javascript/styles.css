@@ -5,7 +5,7 @@
 }
 
 :root{
-    --success-color:green;
+    --success-color:hsl(120, 100%, 45%);
     --error-color:red;
 }
 
@@ -90,21 +90,22 @@ body{
     border-color:orange;
 }
   
-  .form-control.success input {
-    border-color: var(--success-color);
+  .form-control.success input, .form-control.success select1 {
+    border: 2px solid var(--success-color);
   }
   
-  .form-control.error input {
+  .form-control.error input, .form-control.error select {
     border-color: var(--error-color);
   }
   
   .form-control small {
     color: var(--error-color);
     position: absolute;
-    bottom: 0;
+    bottom: -8px;
     left: 0;
     visibility: hidden;
-  }
+    font-size: .8em;
+}
   
   .form-control.error small {
     visibility: visible;
@@ -115,7 +116,7 @@ body{
     justify-content: flex-end;
     gap:20px;
 }
-  .form button {
+  .buttons > * {
     cursor: pointer;
     background-color: hsl(147, 89%, 37%);
     border: 2px solid #0ab457;
@@ -127,7 +128,7 @@ body{
     margin-top: 20px;
   }
 
-  .form button:hover {
+  .buttons > *:hover {
     background-color:hsl(147, 89%, 57%);
     border: 2px solid hsl(147, 89%, 57%);
   }
