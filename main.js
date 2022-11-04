@@ -13,12 +13,17 @@ getDeleteButtons()
 getReadToggle()
 addBookSection.addEventListener('click', processModal)
 
-function Book(title, author, pages, read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-}
+
+class Book {
+    constructor(title, author, pages, read){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }   
+    }
+
+
 
 function openModal() {
     addBookSection.style.display = 'flex'
@@ -49,7 +54,7 @@ function renderToPage(library){
         <h1 class="title">${book.title}</h1>
         <p>By</p>
         <p class="author">${book.author}</p>
-        <p class="pages">${book.pages}</p>
+        <p class="pages">${book.pages} Pages</p>
         <div>
         
         <label><input type="checkbox" ${checked}>Read</label>
