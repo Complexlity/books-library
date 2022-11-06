@@ -49,7 +49,7 @@ function renderToPage(library){
         <h1 class="title">${book.title}</h1>
         <p>By</p>
         <p class="author">${book.author}</p>
-        <p class="pages">${book.pages}</p>
+        <p class="pages">${book.pages} Pages</p>
         <div>
         
         <label><input type="checkbox" ${checked}>Read</label>
